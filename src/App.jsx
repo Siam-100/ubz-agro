@@ -1,34 +1,62 @@
-
 import { useState } from 'react'
 import './App.css'
 
 const products = [
   {
     id: 1,
-    name: 'Organic Fertilizer',
-    category: 'Fertilizer',
-    price: 450,
-    oldPrice: 500,
-    icon: '🌱',
-    description: 'For healthier soil and stronger plant growth.',
+    name: 'ব্লাক রাইস',
+    category: 'Organic Food',
+    price: null,
+    icon: '🌾',
+    description: 'ভিয়েতনামী জাতের ব্লাক রাইস — নিজেদের চাষকৃত।',
   },
   {
     id: 2,
-    name: 'Premium Vegetable Seeds',
-    category: 'Seeds',
-    price: 170,
-    oldPrice: 200,
-    icon: '🌾',
-    description: 'Quality seeds for productive farming.',
+    name: 'ব্লাক গার্লিক',
+    category: 'Organic Food',
+    price: null,
+    icon: '🧄',
+    description: 'আমাদের নিজস্বতায় ফার্মেন্টেড ব্লাক গার্লিক।',
   },
   {
     id: 3,
-    name: 'Essential Garden Tools',
-    category: 'Agricultural Tools',
-    price: 360,
-    oldPrice: 400,
-    icon: '🪴',
-    description: 'Reliable tools for everyday gardening.',
+    name: 'দেশি তিল',
+    category: 'Organic Food',
+    price: null,
+    icon: '🌱',
+    description: 'নিজেদের চাষকৃত দেশি তিল।',
+  },
+  {
+    id: 4,
+    name: 'কালোজিরে',
+    category: 'Organic Food',
+    price: null,
+    icon: '🌿',
+    description: 'নিজেদের চাষকৃত কালোজিরে।',
+  },
+  {
+    id: 5,
+    name: 'মাসকলাই ডালের গুঁড়া',
+    category: 'Organic Food',
+    price: null,
+    icon: '🥣',
+    description: 'নিজেদের চাষকৃত মাসকলাই থেকে তৈরি ডালের গুঁড়া।',
+  },
+  {
+    id: 6,
+    name: 'পাবনার গাওয়া ঘি',
+    category: 'Organic Food',
+    price: null,
+    icon: '🫙',
+    description: 'পাবনার গাওয়া ঘি।',
+  },
+  {
+    id: 7,
+    name: 'প্রাকৃতিক চাকের মধু',
+    category: 'Organic Food',
+    price: null,
+    icon: '🍯',
+    description: 'বিভিন্ন ফুলের প্রাকৃতিক চাকের মধু।',
   },
 ]
 
@@ -82,10 +110,9 @@ function App() {
   )
 
   const subtotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + (item.price || 0) * item.quantity,
     0
   )
-
 
   const categories = [
     'All',
@@ -94,7 +121,7 @@ function App() {
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
-      `${product.name} ${product.category}`
+      `${product.name} ${product.category} ${product.description}`
         .toLowerCase()
         .includes(search.trim().toLowerCase())
 
@@ -105,17 +132,16 @@ function App() {
     return matchesSearch && matchesCategory
   })
 
-
   return (
     <div className="website">
       {/* Top bar */}
       <div className="topbar">
         <div className="container topbar-inner">
           <div className="topbar-info">
-            <span>☎ +880 1700-000000</span>
-            <span>📍 Bangladesh</span>
+            <span>📍 বাংলাদেশ</span>
+            <span>🌿 প্রাকৃতিক খাদ্যপণ্য</span>
           </div>
-          <span>বাংলা | English</span>
+          <span>আলহামদুলিল্লাহ, আমাদের পণ্যসমূহ</span>
         </div>
       </div>
 
@@ -136,7 +162,7 @@ function App() {
           >
             <input
               type="search"
-              placeholder="Search agricultural products..."
+              placeholder="অর্গানিক খাবারের নাম লিখে খুঁজুন..."
               aria-label="Search products"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
@@ -148,7 +174,9 @@ function App() {
             <button
               className="header-action"
               type="button"
-              onClick={() => alert('Wishlist feature will be added later.')}
+              onClick={() =>
+                alert('Wishlist feature will be added later.')
+              }
             >
               <span className="action-icon">♡</span>
               <span>Wishlist</span>
@@ -170,11 +198,21 @@ function App() {
       {/* Navigation */}
       <nav className="navigation">
         <div className="container nav-inner">
-          <a className="nav-link active" href="#">Home</a>
-          <a className="nav-link" href="#products">Products</a>
-          <a className="nav-link" href="#about">About Us</a>
-          <a className="nav-link" href="#services">Our Services</a>
-          <a className="nav-link" href="#contact">Contact</a>
+          <a className="nav-link active" href="#">
+            Home
+          </a>
+          <a className="nav-link" href="#products">
+            Products
+          </a>
+          <a className="nav-link" href="#about">
+            About Us
+          </a>
+          <a className="nav-link" href="#services">
+            Our Services
+          </a>
+          <a className="nav-link" href="#contact">
+            Contact
+          </a>
         </div>
       </nav>
 
@@ -184,18 +222,18 @@ function App() {
           <div className="hero-overlay">
             <div className="container hero-content">
               <p className="eyebrow">
-                YOUR TRUSTED AGRICULTURE PARTNER
+                NATURAL FOOD • TRUSTED QUALITY
               </p>
 
               <h1>
-                কৃষির উন্নতিতে
+                প্রাকৃতিক খাবারের
                 <br />
-                <span>UBZ Agro</span>
+                <span>বিশ্বস্ত ঠিকানা</span>
               </h1>
 
               <p className="hero-description">
-                Quality agricultural products for better crops,
-                healthier soil and a greener future.
+                UBZ Agro-তে পাবেন নিজেদের চাষকৃত ফসল এবং
+                বাছাই করা প্রাকৃতিক খাদ্যপণ্য।
               </p>
 
               <a href="#products" className="primary-button">
@@ -213,11 +251,11 @@ function App() {
                 <p className="eyebrow">OUR COLLECTION</p>
                 <h2>আমাদের পণ্যসমূহ</h2>
                 <p className="section-subtitle">
-                  Quality products for every growing season.
+                  আমাদের নিজস্ব চাষের পণ্য ও প্রাকৃতিক খাবার এক জায়গায়।
                 </p>
               </div>
-              <span className="product-total">
 
+              <span className="product-total">
                 {filteredProducts.length} Products
               </span>
             </div>
@@ -236,40 +274,36 @@ function App() {
               ))}
             </div>
 
-
             {filteredProducts.length > 0 ? (
               <div className="product-grid">
                 {filteredProducts.map((product) => (
                   <article className="product-card" key={product.id}>
                     <div className="product-image product-placeholder">
-                      <span className="discount-badge">
-                        {Math.round(
-                          ((product.oldPrice - product.price) /
-                            product.oldPrice) *
-                          100
-                        )}
-                        % OFF
-                      </span>
                       <span className="placeholder-icon">
                         {product.icon}
                       </span>
                       <span className="placeholder-label">
-                        Product image will be added later
+                        পণ্যের ছবি শিগগিরই যোগ করা হবে
                       </span>
                     </div>
 
                     <div className="product-info">
                       <p className="product-category">
-                        {product.category}
+                        আমাদের পণ্য
                       </p>
+
                       <h3>{product.name}</h3>
+
                       <p className="product-description">
                         {product.description}
                       </p>
 
                       <div className="product-price">
-                        <strong>৳{product.price}</strong>
-                        <del>৳{product.oldPrice}</del>
+                        {product.price != null && product.price > 0 ? (
+                          <strong>৳{product.price}</strong>
+                        ) : (
+                          <strong>দাম জানতে যোগাযোগ করুন</strong>
+                        )}
                       </div>
 
                       <button
@@ -286,8 +320,9 @@ function App() {
             ) : (
               <div className="no-products">
                 <span>🔎</span>
-                <h3>No products found</h3>
-                <p>Try searching with another product name.</p>
+                <h3>কোনো পণ্য পাওয়া যায়নি</h3>
+                <p>অন্য কোনো পণ্যের নাম দিয়ে খুঁজে দেখুন।</p>
+
                 <button
                   className="add-cart-button"
                   type="button"
@@ -300,8 +335,7 @@ function App() {
           </div>
         </section>
 
-        {/* Company information placeholders */}
-
+        {/* About Us */}
         <section className="company-section" id="about">
           <div className="container about-layout">
             <div className="about-content">
@@ -314,79 +348,84 @@ function App() {
               </h2>
 
               <p className="about-description">
-                UBZ Agro is committed to supporting agriculture
-                through quality products and dependable service.
-                Our goal is to help farmers grow with confidence
-                and build a greener future.
+                UBZ Agro-তে আমরা আপনাদের কাছে পৌঁছে দিতে চাই
+                নিজেদের চাষকৃত ফসল ও যত্নসহকারে বাছাই করা
+                প্রাকৃতিক খাদ্যপণ্য। গুণমান, সততা ও আস্থাই
+                আমাদের পথচলার মূল ভিত্তি।
               </p>
 
-              <a href="#services" className="primary-button">
-                Learn More →
+              <a href="#products" className="primary-button">
+                আমাদের পণ্য দেখুন →
               </a>
             </div>
 
             <div className="about-visual">
               <div className="about-icon">🌱</div>
-              <p>Growing a Better Future</p>
-              <span>Quality • Trust • Agriculture</span>
+              <p>প্রকৃতির কাছাকাছি, আপনার পরিবারের জন্য</p>
+              <span>গুণমান • সততা • আস্থা</span>
             </div>
           </div>
         </section>
 
-
-
+        {/* Our Specialties */}
         <section className="services-section" id="services">
           <div className="container">
             <div className="section-heading">
-              <p className="eyebrow">WHAT WE DO</p>
-              <h2>Our <span>Services</span></h2>
+              <p className="eyebrow">WHY UBZ AGRO</p>
+              <h2>
+                আমাদের <span>বিশেষত্ব</span>
+              </h2>
               <p>
-                We provide reliable agricultural products and support
-                for farmers, gardeners, and growing businesses.
+                আমাদের পণ্য সম্পর্কে জানুন এবং আপনার প্রয়োজন অনুযায়ী
+                অর্ডার দিতে যোগাযোগ করুন।
               </p>
             </div>
 
             <div className="services-grid">
               <div className="service-card">
-                <div className="service-icon">🌱</div>
-                <h3>Quality Seeds</h3>
-                <p>
-                  Discover quality seeds for healthy plants
-                  and productive farming.
-                </p>
-              </div>
-
-              <div className="service-card">
                 <div className="service-icon">🌾</div>
-                <h3>Fertilizers</h3>
+                <h3>নিজেদের চাষকৃত পণ্য</h3>
                 <p>
-                  Find agricultural fertilizers for your
-                  farming and gardening needs.
+                  ব্লাক রাইস, দেশি তিল ও কালোজিরের মতো
+                  নিজেদের চাষকৃত পণ্য।
                 </p>
               </div>
 
               <div className="service-card">
-                <div className="service-icon">🚜</div>
-                <h3>Farm Supplies</h3>
+                <div className="service-icon">🧄</div>
+                <h3>নিজস্ব প্রক্রিয়াজাত পণ্য</h3>
                 <p>
-                  Explore useful tools and essential supplies
-                  for everyday agricultural work.
+                  আমাদের নিজস্বতায় ফার্মেন্টেড ব্লাক গার্লিক
+                  এবং নির্বাচিত খাদ্যপণ্য।
+                </p>
+              </div>
+
+              <div className="service-card">
+                <div className="service-icon">🍯</div>
+                <h3>প্রাকৃতিক খাদ্যপণ্য</h3>
+                <p>
+                  প্রাকৃতিক চাকের মধু ও পাবনার গাওয়া ঘির মতো
+                  নির্বাচিত পণ্য।
                 </p>
               </div>
             </div>
           </div>
         </section>
-
       </main>
 
+      {/* Call to Action */}
       <section className="cta-section">
         <div className="container cta-content">
           <div>
-            <p className="eyebrow">LET'S GROW TOGETHER</p>
-            <h2>Ready to Grow with UBZ Agro?</h2>
+            <p className="eyebrow">
+              আপনার পছন্দের পণ্য বেছে নিন
+            </p>
+
+            <h2>প্রাকৃতিক খাবারের জন্য UBZ Agro</h2>
+
             <p>
-              Explore our agricultural products and find
-              what your farm or garden needs.
+              আমাদের পণ্য দেখুন। দাম ও অর্ডারের তথ্য জানতে
+              আমাদের সঙ্গে যোগাযোগ করুন।
             </p>
           </div>
 
@@ -396,29 +435,33 @@ function App() {
         </div>
       </section>
 
-
+      {/* Footer */}
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <h2>UBZ <span>AGRO</span></h2>
+            <h2>
+              UBZ <span>AGRO</span>
+            </h2>
+
             <p>
-              Supporting agriculture with quality products
-              and dependable service.
+              নিজেদের চাষকৃত ফসল ও নির্বাচিত প্রাকৃতিক
+              খাদ্যপণ্য নিয়ে UBZ Agro।
             </p>
           </div>
 
           <div className="footer-links">
             <h3>Quick Links</h3>
-            <a href="#home">Home</a>
+            <a href="#">Home</a>
             <a href="#products">Products</a>
             <a href="#about">About Us</a>
             <a href="#services">Our Services</a>
           </div>
 
-          <div className="footer-contact">
+          <div className="footer-contact" id="contact">
             <h3>Contact</h3>
-            <p>Email: info@ubzagro.com</p>
-            <p>For product and order enquiries, contact our team.</p>
+            <p>
+              পণ্যের দাম ও অর্ডার জানতে আমাদের সঙ্গে যোগাযোগ করুন।
+            </p>
           </div>
         </div>
 
@@ -447,6 +490,7 @@ function App() {
                 <h2>Your Cart</h2>
                 <p>{cartCount} item(s)</p>
               </div>
+
               <button
                 className="close-cart"
                 type="button"
@@ -462,6 +506,7 @@ function App() {
                 <span>🛒</span>
                 <h3>Your cart is empty</h3>
                 <p>Add products to see them here.</p>
+
                 <button
                   className="add-cart-button"
                   type="button"
@@ -481,7 +526,12 @@ function App() {
 
                       <div className="cart-item-details">
                         <h3>{item.name}</h3>
-                        <p>৳{item.price} each</p>
+
+                        <p>
+                          {item.price != null && item.price > 0
+                            ? `৳${item.price} প্রতিটি`
+                            : 'দাম জানতে যোগাযোগ করুন'}
+                        </p>
 
                         <div className="quantity-controls">
                           <button
@@ -491,7 +541,9 @@ function App() {
                           >
                             −
                           </button>
+
                           <span>{item.quantity}</span>
+
                           <button
                             type="button"
                             aria-label={`Increase ${item.name} quantity`}
@@ -503,7 +555,12 @@ function App() {
                       </div>
 
                       <div className="cart-item-end">
-                        <strong>৳{item.price * item.quantity}</strong>
+                        <strong>
+                          {item.price != null && item.price > 0
+                            ? `৳${item.price * item.quantity}`
+                            : 'দাম নির্ধারণ হবে'}
+                        </strong>
+
                         <button
                           className="remove-item"
                           type="button"
@@ -519,18 +576,33 @@ function App() {
                 <div className="cart-summary">
                   <div className="subtotal-row">
                     <span>Subtotal</span>
-                    <strong>৳{subtotal}</strong>
+
+                    <strong>
+                      {cart.every(
+                        (item) =>
+                          item.price == null || item.price <= 0
+                      )
+                        ? 'দাম নির্ধারণ হবে'
+                        : `৳${subtotal}`}
+                    </strong>
                   </div>
-                  <p>Delivery charges will be calculated later.</p>
+
+                  <p>
+                    Delivery charges will be calculated later.
+                  </p>
+
                   <button
                     className="checkout-button"
                     type="button"
                     onClick={() =>
-                      alert('Checkout will be added in a later step.')
+                      alert(
+                        'অর্ডার করতে পণ্যের দাম ও যোগাযোগের তথ্য যোগ করতে হবে।'
+                      )
                     }
                   >
                     Proceed to Checkout
                   </button>
+
                   <button
                     className="continue-button"
                     type="button"
