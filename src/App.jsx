@@ -1,20 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 const products = [
   {
     id: 1,
-    name: 'ব্লাক রাইস',
+    name: 'ব্লাক রাইসের বীজ',
     category: 'Organic Food',
     price: null,
+    variants: [
+      { weight: '১ কেজি', price: 700 },
+      { weight: '২ কেজি', price: 1350 },
+      { weight: '৩ কেজি', price: 1800 },
+      { weight: '৫ কেজি', price: 3000 },
+    ],
     icon: '🌾',
-    description: 'ভিয়েতনামী জাতের ব্লাক রাইস — নিজেদের চাষকৃত।',
+    description: 'চাষের জন্য ভিয়েতনামী জাতের ব্লাক রাইসের বীজ।',
   },
   {
     id: 2,
     name: 'ব্লাক গার্লিক',
     category: 'Organic Food',
     price: null,
+    variants: [
+      { weight: '৫০ গ্রাম', price: 140 },
+      { weight: '১০০ গ্রাম', price: 260 },
+      { weight: '২০০ গ্রাম', price: 520 },
+      { weight: '২৫০ গ্রাম', price: 630 },
+      { weight: '৫০০ গ্রাম', price: 1250 },
+      { weight: '১ কেজি', price: 2500 },
+    ],
     icon: '🧄',
     description: 'আমাদের নিজস্বতায় ফার্মেন্টেড ব্লাক গার্লিক।',
   },
@@ -65,32 +79,91 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [selectedVariants, setSelectedVariants] = useState({})
+  const [darkMode, setDarkMode] = useState(false)
+  const [showBackToTop, setShowBackToTop] = useState(false)
 
-  function addToCart(product) {
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  function handleSearch(event) {
+    event.preventDefault()
+
+    setTimeout(() => {
+      const firstProduct = document.querySelector(
+        '#products .product-card'
+      )
+
+      if (firstProduct) {
+        firstProduct.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      } else {
+        document.getElementById('products')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    }, 0)
+  }
+
+  function addToCart(product, variant = null) {
+    const selectedPrice = variant
+      ? variant.price
+      : product.price
+
+    const selectedWeight = variant
+      ? variant.weight
+      : null
+
+    const cartKey = variant
+      ? `${product.id}-${variant.weight}`
+      : `${product.id}-default`
+
     setCart((currentCart) => {
       const existing = currentCart.find(
-        (item) => item.id === product.id
+        (item) => item.cartKey === cartKey
       )
 
       if (existing) {
         return currentCart.map((item) =>
-          item.id === product.id
+          item.cartKey === cartKey
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       }
 
-      return [...currentCart, { ...product, quantity: 1 }]
+      return [
+        ...currentCart,
+        {
+          ...product,
+          price: selectedPrice,
+          selectedWeight,
+          cartKey,
+          quantity: 1,
+        },
+      ]
     })
 
     setCartOpen(true)
   }
 
-  function decreaseQuantity(productId) {
+  function decreaseQuantity(cartKey) {
     setCart((currentCart) =>
       currentCart
         .map((item) =>
-          item.id === productId
+          item.cartKey === cartKey
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
@@ -98,9 +171,9 @@ function App() {
     )
   }
 
-  function removeFromCart(productId) {
+  function removeFromCart(cartKey) {
     setCart((currentCart) =>
-      currentCart.filter((item) => item.id !== productId)
+      currentCart.filter((item) => item.cartKey !== cartKey)
     )
   }
 
@@ -110,8 +183,13 @@ function App() {
   )
 
   const subtotal = cart.reduce(
-    (total, item) => total + (item.price || 0) * item.quantity,
+    (total, item) =>
+      total + (item.price ?? 0) * item.quantity,
     0
+  )
+
+  const hasUnpricedItems = cart.some(
+    (item) => item.price == null || item.price <= 0
   )
 
   const categories = [
@@ -120,10 +198,14 @@ function App() {
   ]
 
   const filteredProducts = products.filter((product) => {
-    const matchesSearch =
+    const searchTerm = search.trim().toLowerCase()
+
+    const searchableText =
       `${product.name} ${product.category} ${product.description}`
-        .toLowerCase()
-        .includes(search.trim().toLowerCase())
+
+    const matchesSearch = searchableText
+      .toLowerCase()
+      .includes(searchTerm)
 
     const matchesCategory =
       selectedCategory === 'All' ||
@@ -133,8 +215,8 @@ function App() {
   })
 
   return (
-    <div className="website">
-      {/* Top bar */}
+    <div className={`website ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      {/* Top Bar */}
       <div className="topbar">
         <div className="container topbar-inner">
           <div className="topbar-info">
@@ -149,17 +231,18 @@ function App() {
       <header className="main-header">
         <div className="container header-inner">
           <a href="#" className="brand">
-            <span className="brand-icon">U</span>
+            <img
+              src="/ubz-logo.png"
+              alt="UBZ Agro Logo"
+              className="brand-logo"
+            />
+
             <span className="brand-name">
-              UBZ<span> Agro</span>
-              <small>GROWING A BETTER FUTURE</small>
+              UBZ <span>Agro</span>
             </span>
           </a>
 
-          <form
-            className="search-box"
-            onSubmit={(event) => event.preventDefault()}
-          >
+          <form className="search-box" onSubmit={handleSearch}>
             <input
               type="search"
               placeholder="অর্গানিক খাবারের নাম লিখে খুঁজুন..."
@@ -167,6 +250,7 @@ function App() {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
+
             <button type="submit">Search</button>
           </form>
 
@@ -190,6 +274,18 @@ function App() {
               <span className="action-icon">🛒</span>
               <span>Cart</span>
               <span className="cart-count">{cartCount}</span>
+            </button>
+
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={() => setDarkMode((current) => !current)}
+              aria-label={
+                darkMode ? 'Switch to light mode' : 'Switch to dark mode'
+              }
+              title={darkMode ? 'Light Mode' : 'Dark Mode'}
+            >
+              {darkMode ? '☀️' : '🌙'}
             </button>
           </div>
         </div>
@@ -216,8 +312,8 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero */}
       <main>
+        {/* Hero Banner */}
         <section className="hero-banner">
           <div className="hero-overlay">
             <div className="container hero-content">
@@ -250,6 +346,7 @@ function App() {
               <div>
                 <p className="eyebrow">OUR COLLECTION</p>
                 <h2>আমাদের পণ্যসমূহ</h2>
+
                 <p className="section-subtitle">
                   আমাদের নিজস্ব চাষের পণ্য ও প্রাকৃতিক খাবার এক জায়গায়।
                 </p>
@@ -276,46 +373,63 @@ function App() {
 
             {filteredProducts.length > 0 ? (
               <div className="product-grid">
-                {filteredProducts.map((product) => (
-                  <article className="product-card" key={product.id}>
-                    <div className="product-image product-placeholder">
-                      <span className="placeholder-icon">
-                        {product.icon}
-                      </span>
-                      <span className="placeholder-label">
-                        পণ্যের ছবি শিগগিরই যোগ করা হবে
-                      </span>
-                    </div>
+                {filteredProducts.map((product) => {
+                  const selectedWeight =
+                    selectedVariants[product.id] ??
+                    product.variants?.[0]?.weight ??
+                    ''
 
-                    <div className="product-info">
-                      <p className="product-category">
-                        আমাদের পণ্য
-                      </p>
+                  const selectedVariant = product.variants?.find(
+                    (variant) => variant.weight === selectedWeight
+                  )
 
-                      <h3>{product.name}</h3>
+                  return (
+                    <article className="product-card" key={product.id}>
+                      <div className="product-image product-placeholder">
+                        <span className="placeholder-icon">
+                          {product.icon}
+                        </span>
 
-                      <p className="product-description">
-                        {product.description}
-                      </p>
-
-                      <div className="product-price">
-                        {product.price != null && product.price > 0 ? (
-                          <strong>৳{product.price}</strong>
-                        ) : (
-                          <strong>দাম জানতে যোগাযোগ করুন</strong>
-                        )}
+                        <span className="placeholder-label">
+                          পণ্যের ছবি শিগগিরই যোগ করা হবে
+                        </span>
                       </div>
 
-                      <button
-                        className="add-cart-button"
-                        type="button"
-                        onClick={() => addToCart(product)}
-                      >
-                        + Add to Cart
-                      </button>
-                    </div>
-                  </article>
-                ))}
+                      <div className="product-info">
+                        <p className="product-category">
+                          আমাদের পণ্য
+                        </p>
+
+                        <h3>{product.name}</h3>
+
+                        <p className="product-description">
+                          {product.description}
+                        </p>
+
+                        {/* Price */}
+
+                        {/* Price */}
+                        <div className="product-price">
+                          {product.variants ? (
+                            <strong>ওজন ও দাম Cart-এ নির্বাচন করুন</strong>
+                          ) : (
+                            <strong>দাম জানতে যোগাযোগ করুন</strong>
+                          )}
+                        </div>
+
+                        <button
+                          className="add-cart-button"
+                          type="button"
+                          onClick={() =>
+                            addToCart(product, selectedVariant ?? null)
+                          }
+                        >
+                          + Add to Cart
+                        </button>
+                      </div>
+                    </article>
+                  )
+                })}
               </div>
             ) : (
               <div className="no-products">
@@ -372,9 +486,11 @@ function App() {
           <div className="container">
             <div className="section-heading">
               <p className="eyebrow">WHY UBZ AGRO</p>
+
               <h2>
                 আমাদের <span>বিশেষত্ব</span>
               </h2>
+
               <p>
                 আমাদের পণ্য সম্পর্কে জানুন এবং আপনার প্রয়োজন অনুযায়ী
                 অর্ডার দিতে যোগাযোগ করুন।
@@ -472,7 +588,7 @@ function App() {
         </div>
       </footer>
 
-      {/* Cart drawer */}
+      {/* Cart Drawer */}
       {cartOpen && (
         <div
           className="cart-backdrop"
@@ -519,7 +635,7 @@ function App() {
               <>
                 <div className="cart-items">
                   {cart.map((item) => (
-                    <div className="cart-item" key={item.id}>
+                    <div className="cart-item" key={item.cartKey}>
                       <div className="cart-item-icon">
                         {item.icon}
                       </div>
@@ -527,9 +643,50 @@ function App() {
                       <div className="cart-item-details">
                         <h3>{item.name}</h3>
 
-                        <p>
+                        {item.variants && (
+                          <div className="cart-weight-selector">
+                            <label htmlFor={`cart-weight-${item.cartKey}`}>
+                              ওজন নির্বাচন:
+                            </label>
+
+                            <select
+                              id={`cart-weight-${item.cartKey}`}
+                              value={item.selectedWeight || item.variants[0].weight}
+                              onChange={(event) => {
+                                const newWeight = event.target.value
+                                const newVariant = item.variants.find(
+                                  (variant) => variant.weight === newWeight
+                                )
+
+                                if (!newVariant) return
+
+                                setCart((currentCart) =>
+                                  currentCart.map((cartItem) =>
+                                    cartItem.cartKey === item.cartKey
+                                      ? {
+                                        ...cartItem,
+                                        selectedWeight: newVariant.weight,
+                                        price: newVariant.price,
+                                        cartKey: `${cartItem.id}-${newVariant.weight}`,
+                                      }
+                                      : cartItem
+                                  )
+                                )
+                              }}
+                            >
+                              {item.variants.map((variant) => (
+                                <option key={variant.weight} value={variant.weight}>
+                                  {variant.weight} — ৳
+                                  {variant.price.toLocaleString('en-IN')}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
+
+                        <p className="cart-item-unit-price">
                           {item.price != null && item.price > 0
-                            ? `৳${item.price} প্রতিটি`
+                            ? `৳${item.price.toLocaleString('en-IN')} / প্যাক`
                             : 'দাম জানতে যোগাযোগ করুন'}
                         </p>
 
@@ -537,7 +694,7 @@ function App() {
                           <button
                             type="button"
                             aria-label={`Decrease ${item.name} quantity`}
-                            onClick={() => decreaseQuantity(item.id)}
+                            onClick={() => decreaseQuantity(item.cartKey)}
                           >
                             −
                           </button>
@@ -547,7 +704,17 @@ function App() {
                           <button
                             type="button"
                             aria-label={`Increase ${item.name} quantity`}
-                            onClick={() => addToCart(item)}
+                            onClick={() =>
+                              addToCart(
+                                item,
+                                item.selectedWeight
+                                  ? {
+                                    weight: item.selectedWeight,
+                                    price: item.price,
+                                  }
+                                  : null
+                              )
+                            }
                           >
                             +
                           </button>
@@ -557,14 +724,16 @@ function App() {
                       <div className="cart-item-end">
                         <strong>
                           {item.price != null && item.price > 0
-                            ? `৳${item.price * item.quantity}`
+                            ? `৳${(
+                              item.price * item.quantity
+                            ).toLocaleString('en-IN')}`
                             : 'দাম নির্ধারণ হবে'}
                         </strong>
 
                         <button
                           className="remove-item"
                           type="button"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => removeFromCart(item.cartKey)}
                         >
                           Remove
                         </button>
@@ -578,12 +747,9 @@ function App() {
                     <span>Subtotal</span>
 
                     <strong>
-                      {cart.every(
-                        (item) =>
-                          item.price == null || item.price <= 0
-                      )
-                        ? 'দাম নির্ধারণ হবে'
-                        : `৳${subtotal}`}
+                      {hasUnpricedItems
+                        ? `৳${subtotal.toLocaleString('en-IN')} + অন্যান্য পণ্যের দাম`
+                        : `৳${subtotal.toLocaleString('en-IN')}`}
                     </strong>
                   </div>
 
@@ -596,7 +762,7 @@ function App() {
                     type="button"
                     onClick={() =>
                       alert(
-                        'অর্ডার করতে পণ্যের দাম ও যোগাযোগের তথ্য যোগ করতে হবে।'
+                        'অনলাইন অর্ডার সম্পন্ন করতে Checkout ব্যবস্থা যোগ করতে হবে।'
                       )
                     }
                   >
@@ -615,6 +781,24 @@ function App() {
             )}
           </aside>
         </div>
+      )}
+
+      {/* Back to Top */}
+      {showBackToTop && (
+        <button
+          type="button"
+          className="back-to-top"
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            })
+          }
+          aria-label="Back to top"
+          title="Back to top"
+        >
+          ↑
+        </button>
       )}
     </div>
   )

@@ -1600,3 +1600,894 @@
   color: #718071;
   text-align: center;
 }
+
+/* Fix: Why UBZ Agro section heading alignment */
+
+.services-section .section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.services-section .section-heading .eyebrow {
+  margin: 0;
+  color: #309b46;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.services-section .section-heading h2 {
+  margin: 0;
+  color: #203d27;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.4;
+}
+
+.services-section .section-heading>p {
+  max-width: 600px;
+  margin: 0;
+  color: #7b8879;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .services-section .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .services-section .section-heading>p {
+    font-size: 15px;
+  }
+}
+
+/* Dark / Light Mode Toggle Button */
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #dce5d8;
+  border-radius: 50%;
+  background: #f3f7ed;
+  color: #24452b;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+/* Dark Mode */
+
+.website.dark-mode {
+  background: #121a14;
+  color: #edf4e9;
+}
+
+.website.dark-mode .main-header,
+.website.dark-mode .navigation,
+.website.dark-mode .products-section,
+.website.dark-mode .services-section,
+.website.dark-mode .company-section {
+  background: #18231b;
+  color: #edf4e9;
+}
+
+.website.dark-mode .hero-banner {
+  background-color: #18231b;
+}
+
+.website.dark-mode .section-heading h2,
+.website.dark-mode .why-ubz-intro h2,
+.website.dark-mode .product-info h3,
+.website.dark-mode .about-content h2,
+.website.dark-mode .service-card h3 {
+  color: #edf4e9;
+}
+
+.website.dark-mode .section-heading p,
+.website.dark-mode .product-description,
+.website.dark-mode .about-description,
+.website.dark-mode .service-card p {
+  color: #c0cdbd;
+}
+
+.website.dark-mode .product-card,
+.website.dark-mode .service-card,
+.website.dark-mode .why-ubz-features {
+  background: #202e24;
+  border-color: #354638;
+}
+
+.website.dark-mode .why-ubz-section {
+  background: #121a14;
+}
+
+.website.dark-mode .why-ubz-feature {
+  border-bottom-color: #354638;
+}
+
+.website.dark-mode .why-ubz-feature h3 {
+  color: #edf4e9;
+}
+
+.website.dark-mode .why-ubz-feature p {
+  color: #c0cdbd;
+}
+
+.website.dark-mode .search-box input {
+  background: #202e24;
+  color: #fff;
+  border-color: #405343;
+}
+
+.website.dark-mode .category-filter {
+  background: #202e24;
+  color: #edf4e9;
+  border-color: #405343;
+}
+
+.website.dark-mode .category-filter.selected {
+  background: #397c43;
+  color: #fff;
+}
+
+.website.dark-mode .site-footer {
+  background: #0c120e;
+}
+
+.website.dark-mode .footer-brand p,
+.website.dark-mode .footer-contact p,
+.website.dark-mode .footer-links a {
+  color: #c0cdbd;
+}
+
+.website.dark-mode .cart-drawer {
+  background: #18231b;
+  color: #edf4e9;
+}
+
+.website.dark-mode .cart-item {
+  border-bottom-color: #354638;
+}
+
+.website.dark-mode .cart-item-details h3 {
+  color: #edf4e9;
+}
+
+.website.dark-mode .cart-item-details p {
+  color: #c0cdbd;
+}
+
+.website.dark-mode .cart-summary {
+  border-top-color: #354638;
+}
+
+.website.dark-mode .theme-toggle {
+  background: #293b2d;
+  border-color: #50664e;
+}
+
+/* ===== DARK MODE: SECTION SEPARATION ===== */
+
+.website.dark-mode {
+  background: #111a14;
+}
+
+/* Header */
+.website.dark-mode .main-header {
+  background: #18231b;
+}
+
+/* Navigation */
+.website.dark-mode .navigation {
+  background: #202d23;
+  border-top: 1px solid #2b3b2e;
+  border-bottom: 1px solid #2b3b2e;
+}
+
+/* Hero section */
+.website.dark-mode .hero-banner {
+  background-color: #19261c;
+}
+
+/* Products section */
+.website.dark-mode .products-section {
+  background: #151f18;
+}
+
+/* About section */
+.website.dark-mode .company-section {
+  background: #1d2b21;
+  border-top: 1px solid #2c3c30;
+  border-bottom: 1px solid #2c3c30;
+}
+
+/* Why UBZ Agro section */
+.website.dark-mode .services-section {
+  background: #141e17;
+  border-top: 1px solid #29392c;
+}
+
+/* CTA section */
+.website.dark-mode .cta-section {
+  background: #223b29;
+  border-top: 1px solid #354b38;
+}
+
+/* Footer */
+.website.dark-mode .site-footer {
+  background: #0d140f;
+  border-top: 1px solid #29392c;
+}
+
+/* Product cards */
+.website.dark-mode .product-card {
+  background: #202e24;
+  border: 1px solid #304333;
+  border-radius: 12px;
+}
+
+/* Service cards */
+.website.dark-mode .service-card {
+  background: #202e24;
+  border: 1px solid #304333;
+  border-radius: 12px;
+}
+
+/* About visual box */
+.website.dark-mode .about-visual {
+  background: #eaf3e5;
+  color: #203d27;
+}
+
+/* Section headings */
+.website.dark-mode .section-heading h2,
+.website.dark-mode .about-content h2 {
+  color: #edf4e9;
+}
+
+/* Smooth color transition */
+.website,
+.website .main-header,
+.website .navigation,
+.website .hero-banner,
+.website .products-section,
+.website .company-section,
+.website .services-section,
+.website .cta-section,
+.website .site-footer,
+.website .product-card,
+.website .service-card {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Always visible Back to Top button */
+
+.back-to-top {
+  position: fixed !important;
+  right: 25px;
+  bottom: 25px;
+
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+
+  background: #309b46;
+  color: white;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 99999;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.back-to-top:hover {
+  background: #237a35;
+  transform: translateY(-4px);
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    right: 15px;
+    bottom: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+  width: 170px;
+  height: 65px;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .brand-logo {
+    width: 125px;
+    height: 50px;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: block;
+  width: 90px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.brand-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.brand-name>span {
+  display: inline;
+  color: #4caf50;
+}
+
+.brand-name small {
+  margin-top: 5px;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .brand {
+    gap: 7px;
+  }
+
+  .brand-logo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .brand-name {
+    font-size: 21px;
+  }
+
+  .brand-name small {
+    font-size: 7px;
+    letter-spacing: 0.6px;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: block;
+  width: 90px;
+  height: 85px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 29px;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.brand-name>span {
+  color: #4caf50;
+}
+
+.brand-name small {
+  display: block;
+  flex-basis: 100%;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  margin-top: 3px;
+}
+
+@media (max-width: 600px) {
+  .brand {
+    gap: 7px;
+  }
+
+  .brand-logo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+    gap: 4px;
+  }
+
+  .brand-name small {
+    font-size: 7px;
+    letter-spacing: 0.6px;
+  }
+}
+
+/* UBZ Agro same line fix */
+.brand-name {
+  display: block !important;
+  white-space: nowrap !important;
+}
+
+.brand-name>span {
+  display: inline !important;
+}
+
+.brand-name small {
+  display: block !important;
+}
+
+/* Logo size and gap adjustment */
+.main-header .brand {
+  gap: 5px !important;
+}
+
+.main-header .brand-logo {
+  width: 115px !important;
+  height: 100px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  .main-header .brand {
+    gap: 4px !important;
+  }
+
+  .main-header .brand-logo {
+    width: 85px !important;
+    height: 80px !important;
+  }
+}
+
+/* Logo and text gap কমানো */
+.main-header .brand {
+  gap: 0px !important;
+  column-gap: 0px !important;
+}
+
+.main-header .brand-logo {
+  margin-right: -20px !important;
+}
+
+#products .product-card {
+  scroll-margin-top: 10px;
+}
+
+.products-section {
+  text-align: center;
+}
+
+.products-section h2 {
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Products Section Heading */
+.products-section {
+  text-align: center;
+}
+
+.products-section .section-label {
+  text-align: center;
+}
+
+.products-section h2 {
+  text-align: center;
+  width: 100%;
+}
+
+/* Description এবং Product Count */
+.products-section .section-description {
+  text-align: center;
+  width: 100%;
+}
+
+.products-section .product-count {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* OUR COLLECTION এবং আমাদের পণ্যসমূহ একদম মাঝখানে */
+.products-section .section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.products-section .section-heading>div {
+  width: 100%;
+  text-align: center;
+}
+
+.products-section .section-heading .eyebrow,
+.products-section .section-heading h2 {
+  width: 100%;
+  text-align: center;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .products-section .section-heading {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* 7 Products Highlight Box */
+.products-section .product-total {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  margin-top: 14px;
+
+  background: #e8f5e9;
+  color: #2e7d32;
+
+  border: 1px solid #c8e6c9;
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  width: fit-content;
+}
+
+/* Description এবং 7 Products box-এর gap কমানো */
+.products-section .product-total {
+  margin-top: 4px;
+}
+
+/* Weight and price selector */
+.weight-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.weight-selector label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #45614b;
+}
+
+.weight-selector select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d5e3d6;
+  border-radius: 9px;
+  background: #fff;
+  color: #243b2a;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.weight-selector select:focus {
+  border-color: #2e8b42;
+  box-shadow: 0 0 0 3px rgba(46, 139, 66, 0.12);
+}
+
+/* Cart selected weight */
+.cart-item-weight {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #2e8b42;
+  font-weight: 600;
+}
+
+/* Dark mode */
+.dark-mode .weight-selector label {
+  color: #c6e5cb;
+}
+
+.dark-mode .weight-selector select {
+  background: #1f2d23;
+  color: #f1f5f1;
+  border-color: #465b4a;
+}
+
+/* Cart item weight and price */
+.cart-item-weight {
+  margin: 5px 0;
+  color: #2e8b42;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cart-item-unit-price {
+  margin: 4px 0 8px;
+  color: #68786b;
+  font-size: 13px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.quantity-controls span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.dark-mode .cart-item-weight {
+  color: #8ed69b;
+}
+
+.dark-mode .cart-item-unit-price {
+  color: #c0cfc3;
+}
+
+/* Product weight selector */
+.weight-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0 12px;
+}
+
+.weight-selector label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #42634a;
+}
+
+.weight-selector select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d6e5d5;
+  border-radius: 10px;
+  background: #fff;
+  color: #263d2c;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.weight-selector select:focus {
+  border-color: #2f9e44;
+  box-shadow: 0 0 0 3px rgba(47, 158, 68, 0.12);
+}
+
+/* Product price */
+.product-price {
+  margin: 14px 0;
+  color: #2f9e44;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* Cart item weight and unit price */
+.cart-item-weight,
+.cart-item-unit-price {
+  margin: 5px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.cart-item-weight {
+  color: #2f9e44;
+  font-weight: 600;
+}
+
+.cart-item-unit-price {
+  color: #6b7c70;
+}
+
+/* Cart quantity controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d6e5d5;
+  border-radius: 7px;
+  background: #edf6eb;
+  color: #238636;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.quantity-controls button:hover {
+  background: #dcefd9;
+}
+
+.quantity-controls span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Cart item total */
+.cart-item-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.cart-item-end strong {
+  color: #263d2c;
+  white-space: nowrap;
+}
+
+.remove-item {
+  border: none;
+  background: transparent;
+  color: #d64545;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* Mobile layout */
+@media (max-width: 480px) {
+  .weight-selector select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .cart-item {
+    gap: 10px;
+  }
+
+  .cart-item-details h3 {
+    font-size: 14px;
+  }
+
+  .cart-item-end strong {
+    font-size: 13px;
+  }
+}
+
+/* ===== FIX: Search result scroll position ===== */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+#products {
+  scroll-margin-top: 120px;
+}
+
+#products .product-card {
+  scroll-margin-top: 120px;
+}
+
+/* Search করার পর product grid-এর প্রথম result */
+#products .product-grid {
+  scroll-margin-top: 120px;
+}
+
+/* Mobile screen */
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 100px;
+  }
+
+  #products,
+  #products .product-card,
+  #products .product-grid {
+    scroll-margin-top: 100px;
+  }
+}
+
+/* Cart item weight selector */
+.cart-item select,
+.cart-weight-select {
+  width: 100%;
+  max-width: 180px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #222222;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-item select:focus,
+.cart-weight-select:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+/* Weight and price text */
+.cart-item .weight-label {
+  display: block;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #555555;
+}
+
+.cart-item .item-price {
+  margin: 6px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #15803d;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+
+  .cart-item select,
+  .cart-weight-select {
+    width: 100%;
+    max-width: 100%;
+    font-size: 14px;
+    padding: 9px 10px;
+  }
+}
