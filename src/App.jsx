@@ -82,6 +82,10 @@ function App() {
   const [selectedVariants, setSelectedVariants] = useState({})
   const [darkMode, setDarkMode] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [reviews, setReviews] = useState([])
+  const [reviewName, setReviewName] = useState('')
+  const [reviewRating, setReviewRating] = useState('5')
+  const [reviewMessage, setReviewMessage] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +99,30 @@ function App() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+  function submitReview(event) {
+    event.preventDefault()
 
+    if (!reviewName.trim() || !reviewMessage.trim()) {
+      return
+    }
+
+    const newReview = {
+      id: Date.now(),
+      name: reviewName.trim(),
+      rating: Number(reviewRating),
+      message: reviewMessage.trim(),
+      date: new Date().toLocaleDateString('bn-BD'),
+    }
+
+    setReviews((currentReviews) => [
+      newReview,
+      ...currentReviews,
+    ])
+
+    setReviewName('')
+    setReviewRating('5')
+    setReviewMessage('')
+  }
   function handleSearch(event) {
     event.preventDefault()
 
@@ -450,6 +477,116 @@ function App() {
         </section>
 
         {/* About Us */}
+        {/* Customer Reviews */}
+        <section className="reviews-section" id="reviews">
+          <div className="container">
+            <div className="section-heading">
+              <div className="section-heading reviews-title">
+                <p className="eyebrow">CUSTOMER REVIEWS</p>
+
+                <h2>গ্রাহকদের মতামত</h2>
+
+                <p className="section-subtitle">
+                  UBZ Agro সম্পর্কে আপনার অভিজ্ঞতা ও মতামত জানান।
+                </p>
+              </div>
+            </div>
+
+            <div className="reviews-layout">
+              <form className="review-form" onSubmit={submitReview}>
+                <h3>আপনার মতামত লিখুন</h3>
+
+                <label htmlFor="review-name">আপনার নাম</label>
+                <input
+                  id="review-name"
+                  type="text"
+                  placeholder="আপনার নাম লিখুন"
+                  value={reviewName}
+                  onChange={(event) => setReviewName(event.target.value)}
+                  required
+                />
+
+                <label>আপনার Rating</label>
+
+                <div className="rating-stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      className={Number(reviewRating) >= star ? 'active' : ''}
+                      onClick={() => setReviewRating(String(star))}
+                      aria-label={`${star} Star`}
+                    >
+                      <svg viewBox="0 0 24 24" className="premium-star">
+                        <defs>
+                          <linearGradient id={`goldGradient-${star}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#fff176" />
+                            <stop offset="45%" stopColor="#ffc107" />
+                            <stop offset="100%" stopColor="#f57c00" />
+                          </linearGradient>
+                        </defs>
+
+                        <path
+                          d="M12 1.5L15.2 8.1L22.5 9.2L17.2 14.4L18.4 21.8L12 18.3L5.6 21.8L6.8 14.4L1.5 9.2L8.8 8.1Z"
+                          fill={Number(reviewRating) >= star ? `url(#goldGradient-${star})` : '#d5d5d5'}
+                          stroke={Number(reviewRating) >= star ? '#e69b00' : '#bcbcbc'}
+                          strokeWidth="0.8"
+                        />
+                      </svg>
+                    </button>
+                  ))}
+                </div>
+                <label htmlFor="review-message">আপনার অভিজ্ঞতা</label>
+                <textarea
+                  id="review-message"
+                  placeholder="আপনার মতামত লিখুন..."
+                  rows="4"
+                  value={reviewMessage}
+                  onChange={(event) => setReviewMessage(event.target.value)}
+                  required
+                />
+
+                <button className="add-cart-button" type="submit">
+                  Submit Review
+                </button>
+              </form>
+
+              <div className="reviews-list">
+                <h3>Customer Feedback</h3>
+
+                {reviews.length > 0 ? (
+                  reviews.map((review) => (
+                    <article className="review-card" key={review.id}>
+                      <div className="review-card-header">
+                        <div>
+                          <h4>{review.name}</h4>
+                          <span className="review-date">
+                            {review.date}
+                          </span>
+                        </div>
+
+                        <span className="review-stars">
+                          {'★'.repeat(review.rating)}
+                          {'☆'.repeat(5 - review.rating)}
+                        </span>
+                      </div>
+
+                      <p>{review.message}</p>
+                    </article>
+                  ))
+                ) : (
+                  <div className="no-reviews">
+                    <span>⭐</span>
+                    <h3>এখনো কোনো Review নেই</h3>
+                    <p>
+                      প্রথম মতামতটি আপনিই লিখুন।
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="company-section" id="about">
           <div className="container about-layout">
             <div className="about-content">
