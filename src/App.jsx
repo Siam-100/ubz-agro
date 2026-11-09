@@ -86,6 +86,7 @@ function App() {
   const [reviewName, setReviewName] = useState('')
   const [reviewRating, setReviewRating] = useState('5')
   const [reviewMessage, setReviewMessage] = useState('')
+  const [showAllReviews, setShowAllReviews] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -551,29 +552,44 @@ function App() {
                 </button>
               </form>
 
+
               <div className="reviews-list">
                 <h3>Customer Feedback</h3>
 
                 {reviews.length > 0 ? (
-                  reviews.map((review) => (
-                    <article className="review-card" key={review.id}>
-                      <div className="review-card-header">
-                        <div>
-                          <h4>{review.name}</h4>
-                          <span className="review-date">
-                            {review.date}
-                          </span>
-                        </div>
+                  <>
+                    {reviews
+                      .slice(0, showAllReviews ? reviews.length : 4)
+                      .map((review) => (
+                        <article className="review-card" key={review.id}>
+                          <div className="review-card-header">
+                            <div>
+                              <h4>{review.name}</h4>
+                              <span className="review-date">
+                                {review.date}
+                              </span>
+                            </div>
 
-                        <span className="review-stars">
-                          {'★'.repeat(review.rating)}
-                          {'☆'.repeat(5 - review.rating)}
-                        </span>
-                      </div>
+                            <span className="review-stars">
+                              {'★'.repeat(review.rating)}
+                              {'☆'.repeat(5 - review.rating)}
+                            </span>
+                          </div>
 
-                      <p>{review.message}</p>
-                    </article>
-                  ))
+                          <p>{review.message}</p>
+                        </article>
+                      ))}
+
+                    {reviews.length > 4 && (
+                      <button
+                        type="button"
+                        className="show-more-reviews"
+                        onClick={() => setShowAllReviews((current) => !current)}
+                      >
+                        {showAllReviews ? 'Show Less' : 'Show More'}
+                      </button>
+                    )}
+                  </>
                 ) : (
                   <div className="no-reviews">
                     <span>⭐</span>

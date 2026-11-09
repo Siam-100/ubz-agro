@@ -2788,3 +2788,225 @@ html {
   stroke: #e69b00;
   filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.7));
 }
+
+/* ===== Premium Customer Reviews Section ===== */
+
+.reviews-section {
+  position: relative;
+  padding: 85px 20px;
+  background: linear-gradient(135deg, #f8f7ed 0%, #edf3e8 100%);
+  overflow: hidden;
+}
+
+.reviews-section .reviews-title {
+  margin-bottom: 48px;
+}
+
+.reviews-title .eyebrow {
+  color: #718b45;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.reviews-title h2 {
+  color: #173d29;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+}
+
+.reviews-title .section-subtitle {
+  color: #68776b;
+  font-size: 15px;
+}
+
+/* Form and review layout */
+
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 30px;
+  align-items: start;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Review form card */
+
+.review-form,
+.reviews-list {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(93, 125, 77, 0.14);
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 12px 35px rgba(32, 65, 42, 0.08);
+}
+
+.review-form h3,
+.reviews-list h3 {
+  color: #20472f;
+  font-size: 22px;
+  font-weight: 750;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* Form labels */
+
+.review-form label {
+  display: block;
+  color: #344b39;
+  font-size: 14px;
+  font-weight: 650;
+  margin: 16px 0 9px;
+}
+
+/* Input fields */
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #dce5d7;
+  border-radius: 11px;
+  background: #fbfcf8;
+  color: #263d2c;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.review-form textarea {
+  min-height: 125px;
+  resize: vertical;
+}
+
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+  border-color: #668b50;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(102, 139, 80, 0.12);
+}
+
+/* Submit button */
+
+.review-form .add-cart-button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #244f32, #416e43);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 7px 16px rgba(36, 79, 50, 0.2);
+  transition: all 0.25s ease;
+}
+
+.review-form .add-cart-button:hover {
+  background: linear-gradient(135deg, #183d27, #315d38);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(36, 79, 50, 0.25);
+}
+
+/* Individual review cards */
+
+.review-card {
+  padding: 22px;
+  margin-bottom: 16px;
+  background: #fbfcf8;
+  border: 1px solid #e7eddf;
+  border-radius: 16px;
+  box-shadow: 0 5px 16px rgba(35, 65, 42, 0.045);
+  transition: all 0.25s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(35, 65, 42, 0.09);
+}
+
+.review-card:last-child {
+  margin-bottom: 0;
+}
+
+.review-date {
+  color: #8a9788;
+  font-size: 12px;
+}
+
+.no-reviews {
+  padding: 35px 20px;
+  text-align: center;
+  background: #f8faf5;
+  border: 1px dashed #cbd9c4;
+  border-radius: 15px;
+  color: #71806e;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 60px 15px;
+  }
+
+  .reviews-layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .review-form,
+  .reviews-list {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+}
+
+.show-more-reviews {
+  display: block;
+  margin: 22px auto 0;
+  padding: 12px 30px;
+  border: 1px solid #416e43;
+  border-radius: 10px;
+  background: #244f32;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.show-more-reviews:hover {
+  background: #183d27;
+  transform: translateY(-2px);
+}
+
+/* Reviews list internal scrolling */
+.reviews-list {
+  max-height: 550px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #718b45 #edf3e8;
+  scroll-behavior: smooth;
+  padding-right: 14px;
+}
+
+.reviews-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.reviews-list::-webkit-scrollbar-track {
+  background: #edf3e8;
+  border-radius: 10px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb {
+  background: #718b45;
+  border-radius: 10px;
+}
