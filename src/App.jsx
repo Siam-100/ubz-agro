@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import FAQ from "./FAQ";
 
 const products = [
   {
@@ -320,20 +321,31 @@ function App() {
       </header>
 
       {/* Navigation */}
+
+      {/* Navigation */}
       <nav className="navigation">
         <div className="container nav-inner">
           <a className="nav-link active" href="#">
             Home
           </a>
+
           <a className="nav-link" href="#products">
             Products
           </a>
+
           <a className="nav-link" href="#about">
             About Us
           </a>
+
           <a className="nav-link" href="#services">
             Our Services
           </a>
+
+          {/* FAQ Navigation */}
+          <a className="nav-link" href="#faq">
+            FAQ
+          </a>
+
           <a className="nav-link" href="#contact">
             Contact
           </a>
@@ -603,6 +615,8 @@ function App() {
             </div>
           </div>
         </section>
+        {/* FAQ Section */}
+        <FAQ />
         <section className="company-section" id="about">
           <div className="container about-layout">
             <div className="about-content">

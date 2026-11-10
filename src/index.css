@@ -44,3 +44,7 @@ input:focus-visible {
 img {
   max-width: 100%;
 }
+
+html {
+  scroll-behavior: smooth;
+}
