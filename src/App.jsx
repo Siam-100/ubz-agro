@@ -349,6 +349,7 @@ function App() {
           <a className="nav-link" href="#contact">
             Contact
           </a>
+
         </div>
       </nav>
 
@@ -740,12 +741,40 @@ function App() {
             <a href="#services">Our Services</a>
           </div>
 
+
           <div className="footer-contact" id="contact">
-            <h3>Contact</h3>
+            <h3>যোগাযোগ করুন</h3>
+
             <p>
               পণ্যের দাম ও অর্ডার জানতে আমাদের সঙ্গে যোগাযোগ করুন।
             </p>
+
+            {/* Social Media Contact Buttons */}
+            <div className="social-contact-buttons">
+
+              <a
+                href="https://www.facebook.com/ubzagro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-btn facebook-btn"
+              >
+                <i className="fab fa-facebook-f"></i>
+                Facebook
+              </a>
+
+              <a
+                href="https://wa.me/8801618990561"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-btn whatsapp-btn"
+              >
+                <i className="fab fa-whatsapp"></i>
+                WhatsApp
+              </a>
+
+            </div>
           </div>
+
         </div>
 
         <div className="container footer-bottom">

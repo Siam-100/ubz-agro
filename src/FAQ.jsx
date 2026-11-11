@@ -7,7 +7,7 @@ const faqData = [
         category: "ডেলিভারি",
         question: "পণ্য হাতে পেতে কত দিন সময় লাগে?",
         answer:
-            "সাধারণত অর্ডার নিশ্চিত হওয়ার পর ২-৫ কার্যদিবসের মধ্যে পণ্য পৌঁছে দেওয়ার চেষ্টা করা হয়। আপনার অবস্থান অনুযায়ী সময় কিছুটা পরিবর্তিত হতে পারে।"
+            "সাধারণত অর্ডার নিশ্চিত হওয়ার পর ১-২ কার্যদিবসের মধ্যে পণ্য পৌঁছে দেওয়ার চেষ্টা করা হয়। আপনার অবস্থান অনুযায়ী সময় কিছুটা পরিবর্তিত হতে পারে।"
     },
     {
         category: "ডেলিভারি",
@@ -19,7 +19,7 @@ const faqData = [
         category: "ডেলিভারি",
         question: "ডেলিভারি চার্জ কত?",
         answer:
-            "ডেলিভারি চার্জ আপনার অবস্থান ও অর্ডারের পরিমাণের ওপর নির্ভর করে। অর্ডার করার আগে ডেলিভারি চার্জ জেনে নিতে পারবেন।"
+            "সাধারণত ঢাকার ভিতরে ৮০ টাকা এবং ঢাকার বাইরে ১২০ টাকা ডেলিভারি চার্জ প্রযোজ্য (১ কেজি পর্যন্ত)। অর্ডারের ওজন ও অবস্থান অনুযায়ী অতিরিক্ত চার্জ প্রযোজ্য হতে পারে। অর্ডার করার আগে ডেলিভারি চার্জ জেনে নিতে পারবেন।"
     },
     {
         category: "পেমেন্ট",
@@ -66,23 +66,19 @@ const faqData = [
 ];
 
 const FAQ = () => {
-    const [activeCategory, setActiveCategory] = useState("সব প্রশ্ন");
+    const [activeCategory, setActiveCategory] = useState("ডেলিভারি");
     const [openIndex, setOpenIndex] = useState(null);
 
     const categories = [
-        "সব প্রশ্ন",
         "ডেলিভারি",
         "পেমেন্ট",
         "রিটার্ন",
         "পণ্য"
     ];
 
-    const filteredFAQs =
-        activeCategory === "সব প্রশ্ন"
-            ? faqData
-            : faqData.filter(
-                (faq) => faq.category === activeCategory
-            );
+    const filteredFAQs = faqData.filter(
+        (faq) => faq.category === activeCategory
+    );
 
     const toggleFAQ = (index) => {
         setOpenIndex(openIndex === index ? null : index);

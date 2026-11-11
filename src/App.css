@@ -3010,3 +3010,85 @@ html {
   background: #718b45;
   border-radius: 10px;
 }
+
+/* Social Media Contact Buttons */
+
+.social-contact-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.facebook-btn {
+  background-color: #1877F2;
+}
+
+.facebook-btn:hover {
+  background-color: #0d5fc7;
+  transform: translateY(-3px);
+}
+
+.whatsapp-btn {
+  background-color: #25D366;
+}
+
+.whatsapp-btn:hover {
+  background-color: #1da851;
+  transform: translateY(-3px);
+}
+
+/* Footer Social Contact Buttons */
+
+.social-contact-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.facebook-btn {
+  background: #1877F2;
+}
+
+.facebook-btn:hover {
+  background: #0d5fc7;
+  transform: translateY(-3px);
+}
+
+.whatsapp-btn {
+  background: #25D366;
+}
+
+.whatsapp-btn:hover {
+  background: #1da851;
+  transform: translateY(-3px);
+}
