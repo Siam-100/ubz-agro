@@ -155,7 +155,7 @@ const translations = {
     contactUs: 'যোগাযোগ করুন',
     contactText: 'পণ্যের দাম ও অর্ডার জানতে আমাদের সঙ্গে যোগাযোগ করুন।',
     location: 'কাজিপাড়া, সিরাজগঞ্জ, বাংলাদেশ',
-    footerDescription: 'নিজেদের চাষকৃত ফসল ও নির্বাচিত প্রাকৃতিক খাদ্যপণ্য নিয়ে UBZ Agro।',
+    footerDescription: 'নিজেদের চাষকৃত তাজা ফসল ও বাছাইকৃত প্রাকৃতিক খাদ্যপণ্য নিয়ে UBZ Agro। গুণগত মান, বিশুদ্ধতা ও সতেজতা বজায় রেখে আপনাদের কাছে পৌঁছে দেওয়াই আমাদের লক্ষ্য।',
     rights: 'সর্বস্বত্ব সংরক্ষিত।',
     yourCart: 'আপনার কার্ট',
     items: 'টি পণ্য',
@@ -247,7 +247,7 @@ const translations = {
     contactUs: 'Contact Us',
     contactText: 'Contact us for product prices and order information.',
     location: 'Kazipara, Sirajganj, Bangladesh',
-    footerDescription: 'UBZ Agro offers our own cultivated crops and selected natural food products.',
+    footerDescription: 'UBZ Agro offers freshly grown crops and carefully selected natural food products. Our goal is to deliver quality, freshness, and purity to your everyday life.',
     rights: 'All rights reserved.',
     yourCart: 'Your Cart',
     items: 'item(s)',
@@ -989,6 +989,9 @@ function App() {
             <a href="#products">{t('products')}</a>
             <a href="#about">{t('about')}</a>
             <a href="#services">{t('services')}</a>
+            <a href="#faq">
+              {language === "bn" ? "সচরাচর জিজ্ঞাসা" : "Frequently Asked Questions(FAQ)"}
+            </a>
           </div>
 
           <div className="footer-contact" id="contact">

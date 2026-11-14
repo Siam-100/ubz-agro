@@ -378,9 +378,9 @@
 
 .hero-track {
   display: flex;
-  width: 200%;
+  width: 600%;
   height: 100%;
-  animation: continuousSlide 40s linear infinite;
+  animation: continuousSlide 60s linear infinite;
   will-change: transform;
 }
 
@@ -3328,4 +3328,136 @@ html {
     padding: 7px 9px;
     font-size: 11px;
   }
+}
+
+/* =================================
+   MOBILE HEADER LAYOUT
+================================= */
+
+
+/* =========================================
+   UBZ AGRO - FINAL MOBILE HEADER DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+
+  /* MAIN HEADER LAYOUT */
+  .main-header .header-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand actions"
+      "search search";
+    align-items: center;
+    column-gap: 8px;
+    row-gap: 20px;
+    min-height: auto;
+    padding: 18px 0;
+  }
+
+  /* LOGO AND BRAND NAME */
+  .main-header .brand {
+    grid-area: brand;
+    display: flex;
+    align-items: center;
+    gap: 5px !important;
+    min-width: 0;
+    margin: 0 !important;
+  }
+
+  .main-header .brand-logo {
+    width: 55px !important;
+    height: 55px !important;
+    margin: 0 !important;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .main-header .brand-name {
+    display: block !important;
+    font-size: 21px !important;
+    white-space: nowrap !important;
+    line-height: 1.1;
+  }
+
+  .main-header .brand-name>span {
+    display: inline !important;
+  }
+
+  /* WISHLIST, CART AND THEME ICONS */
+  .main-header .header-actions {
+    grid-area: actions;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px !important;
+    white-space: nowrap;
+  }
+
+  /* HIDE WISHLIST AND CART TEXT */
+  .main-header .header-action>span:not(.action-icon):not(.cart-count) {
+    display: none !important;
+  }
+
+  .main-header .header-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .main-header .action-icon {
+    font-size: 23px !important;
+    line-height: 1;
+  }
+
+  /* CART COUNT */
+  .main-header .cart-count {
+    font-size: 11px;
+    margin-left: 2px;
+  }
+
+  /* DARK / LIGHT MODE */
+  .main-header .theme-toggle {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 17px;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  /* SEARCH BAR */
+  .main-header .search-box {
+    grid-area: search;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 46px;
+    margin: 0;
+  }
+
+  .main-header .search-box input {
+    min-width: 0;
+    flex: 1;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .main-header .search-box button {
+    padding: 0 14px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+}
+
+/* Hide Top Information Bar on All Devices */
+.topbar {
+  display: none !important;
 }
